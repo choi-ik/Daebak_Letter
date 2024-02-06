@@ -1,5 +1,5 @@
 import { ReactNode, createContext } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 import { useAtomValue } from 'jotai';
 import { darkAtom } from '@/store/theme';
 import TextareaContent from './TextareaContent';
@@ -15,11 +15,12 @@ interface TextareaContainerProps {
   children: ReactNode;
 }
 
-export interface TextareaProps {
+export interface TextareaProps<T extends FieldValues> {
   value?: undefined | string;
-  register?: UseFormRegister<Record<string, string>>;
+  register?: UseFormRegister<T>;
   placeholder: string;
   maxLength?: number;
+  formKey: Path<T>;
 }
 
 function Textarea({ children }: TextareaContainerProps) {

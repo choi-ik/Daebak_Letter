@@ -21,9 +21,11 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
+const LETTER_TITLE = 'letterTitle';
+const LETTER_CONTENT = 'letterContent';
 export interface useFormProps {
-  letterTitle: string;
-  letterContent: string;
+  [LETTER_TITLE]: string;
+  [LETTER_CONTENT]: string;
 }
 
 export interface channelInfo {
@@ -62,6 +64,7 @@ function Post() {
 
   /** 포스트 작성 시 서버로 전송 */
   const onPostSubmit = (submitData: useFormProps) => {
+    console.log(submitData);
     if (channelId)
       mutationPostCreate({
         title: submitData.letterTitle,
@@ -149,11 +152,13 @@ function Post() {
             }
             maxLength={15}
             register={register}
+            formKey={LETTER_TITLE}
           />
           <Textarea.TextareaUnderLine />
           <Textarea.TextareaContent
             placeholder={'내용을 입력하세요'}
             register={register}
+            formKey={LETTER_CONTENT}
           />
         </Textarea>
         <Warning allowRangeData={allowRangeData} />
