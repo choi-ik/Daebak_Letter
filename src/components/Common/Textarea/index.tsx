@@ -15,14 +15,9 @@ interface TextareaContainerProps {
   children: ReactNode;
 }
 
-export interface useFormProps {
-  letterTitle: string;
-  letterContent: string;
-}
-
 export interface TextareaProps {
   value?: undefined | string;
-  register?: UseFormRegister<useFormProps>;
+  register?: UseFormRegister<Record<string, string>>;
   placeholder: string;
   maxLength?: number;
 }
