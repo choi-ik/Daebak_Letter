@@ -40,7 +40,6 @@ export interface channelInfo {
 function Post() {
   const userName = useAtomValue(channelNameAtom);
   const JWTtoken = useAtomValue(tokenAtom);
-  const darkMode = useAtomValue(darkAtom);
 
   const { channelId } = useParams();
   const { state } = useLocation();
