@@ -9,14 +9,20 @@ const TextArea = css`
   box-sizing: border-box;
 `;
 
-export const TextareaContainer = styled.div<{ darkMode: boolean }>`
+// width: 100%;
+// height: 20.3125rem;
+export const TextareaContainer = styled.div<{
+  darkMode: boolean;
+  width?: string;
+  height?: string;
+}>`
   background-color: ${(props) =>
     props.darkMode ? props.theme.palette.sub : props.theme.palette.dark};
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 20.3125rem;
+  width: ${(props) => `${props.width};`}
+  height: ${(props) => `${props.height};`}
   border-radius: 20px;
   margin-top: 1.625rem;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);

@@ -7,7 +7,6 @@ import Modal from '@components/Common/Modal';
 import { useAtomValue } from 'jotai';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
 import { channelNameAtom, tokenAtom } from '@/store/auth';
-import { darkAtom } from '@/store/theme';
 import Button from '../Common/Button';
 import Textarea from '../Common/Textarea';
 import Footer from './Footer';
@@ -133,7 +132,9 @@ function Post() {
         ))}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
-        <Textarea>
+        <Textarea
+          width={'100%'}
+          height={'20.3125rem'}>
           <Textarea.TextareaTitle
             value={
               userName

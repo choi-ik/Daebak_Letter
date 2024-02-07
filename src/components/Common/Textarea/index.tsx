@@ -13,22 +13,27 @@ export const TextareaContext = createContext({
 
 interface TextareaContainerProps {
   children: ReactNode;
+  width?: string;
+  height?: string;
 }
 
 export interface TextareaProps<T extends FieldValues> {
-  value?: undefined | string;
+  value?: string;
   register?: UseFormRegister<T>;
   placeholder: string;
   maxLength?: number;
   formKey: Path<T>;
 }
 
-function Textarea({ children }: TextareaContainerProps) {
+function Textarea({ children, width, height }: TextareaContainerProps) {
   const darkMode = useAtomValue(darkAtom);
 
   return (
     <TextareaContext.Provider value={{ darkMode }}>
-      <Style.TextareaContainer darkMode={darkMode}>
+      <Style.TextareaContainer
+        darkMode={darkMode}
+        width={width}
+        height={height}>
         {children}
       </Style.TextareaContainer>
     </TextareaContext.Provider>
