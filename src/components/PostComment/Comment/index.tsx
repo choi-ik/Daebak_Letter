@@ -1,5 +1,5 @@
 import { UseFormRegister } from 'react-hook-form';
-import * as Style from './index.style';
+import Textarea from '@/components/Common/Textarea';
 
 interface useFormProps {
   commentTitle: string;
@@ -9,36 +9,37 @@ interface useFormProps {
 interface CommentProps {
   register: UseFormRegister<useFormProps>;
   userName: string;
-  darkMode: boolean;
 }
 
-function Comment({ darkMode, register, userName }: CommentProps) {
+function Comment({ register, userName }: CommentProps) {
   return (
-    <>
-      <Style.CommentContainer darkMode={darkMode}>
-        <Style.CommentTitleInput
-          darkMode={darkMode}
-          placeholder={userName ? '' : '작성자명을 입력해주세요'}
-          value={userName ? userName : undefined}
-          {...(userName === ''
-            ? {
-                ...register('commentTitle', {
-                  required: '작성자명은 반드시 입력하셔야합니다.'
-                })
-              }
-            : false)}
-        />
-
-        <Style.CommentTitleUnderLine />
-        <Style.CommentContent
-          darkMode={darkMode}
-          placeholder="댓글을 입력하세요"
-          {...register('commentContent', {
-            required: '댓글 내용은 반드시 입력하셔야합니다.'
-          })}
-        />
-      </Style.CommentContainer>
-    </>
+    <Textarea
+      width={'100%'}
+      height={'8.1875rem'}>
+      <Textarea.TextareaTitle
+        readonly={true}
+        value={userName}
+        maxLength={15}
+        register={register}
+        formKey={'commentTitle'}
+        registerOptions={{
+          required: '작성자명은 반드시 입력해야합니다.'
+        }}
+        width={'95%'}
+        height={'40px'}
+      />
+      <Textarea.TextareaUnderLine />
+      <Textarea.TextareaContent
+        placeholder={'내용을 입력하세요'}
+        register={register}
+        formKey={'commentContent'}
+        registerOptions={{
+          required: '내용을 반드시 입력해야합니다.'
+        }}
+        width={'95%'}
+        height={''}
+      />
+    </Textarea>
   );
 }
 
