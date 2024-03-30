@@ -6,4 +6,5 @@ export const FooterContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: 1rem;
 `;
