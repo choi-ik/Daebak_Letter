@@ -74,7 +74,10 @@ function PostComment() {
   }, [commentCreateData]);
 
   useEffect(() => {
-    if (isSubmitSuccessful) reset();
+    if (isSubmitSuccessful)
+      reset({
+        commentContent: ''
+      });
 
     /** react-hook-form validation */
     if (isSubmitting) {
@@ -100,7 +103,6 @@ function PostComment() {
           />
         )}
         <Comment
-          darkMode={darkMode}
           register={register}
           userName={userName}
         />
