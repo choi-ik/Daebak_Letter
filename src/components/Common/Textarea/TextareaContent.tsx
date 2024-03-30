@@ -5,20 +5,28 @@ import * as Style from './index.style';
 
 function TextareaContent<T extends FieldValues>({
   register,
+  registerOptions,
   placeholder,
-  formKey
+  formKey,
+  width,
+  height,
+  readonly = false,
+  className = ``
 }: TextareaProps<T>) {
   const { darkMode } = useContext(TextareaContext);
 
   return (
     <Style.TextareaContent
       darkMode={darkMode}
+      readOnly={readonly}
       placeholder={placeholder}
-      {...(register && {
-        ...register(formKey, {
-          required: '작성자명은 반드시 입력해야합니다.'
-        })
-      })}
+      {...(register &&
+        formKey && {
+          ...register(formKey, registerOptions)
+        })}
+      width={width}
+      height={height}
+      className={className}
     />
   );
 }

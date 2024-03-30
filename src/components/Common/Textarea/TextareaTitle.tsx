@@ -5,25 +5,39 @@ import * as Style from './index.style';
 
 function TextareaTitle<T extends FieldValues>({
   value,
+  className = ``,
   register,
+  formKey,
+  registerOptions,
   placeholder,
   maxLength,
-  formKey
+  width,
+  height,
+  readonly = false
 }: TextareaProps<T>) {
   const { darkMode } = useContext(TextareaContext);
   return (
     <Style.TextareaTitle
       darkMode={darkMode}
-      value={value}
+      readOnly={readonly}
+      defaultValue={value}
       placeholder={placeholder}
       maxLength={maxLength}
-      {...(register && {
-        ...register(formKey, {
-          required: '작성자명은 반드시 입력해야합니다.'
-        })
-      })}
+      width={width}
+      height={height}
+      {...(register &&
+        formKey && {
+          ...register(formKey, registerOptions)
+        })}
+      className={className}
     />
   );
 }
+
+// {...(register &&
+//   formKey && {
+//     ...register(formKey, {
+//       required: '작성자명은 반드시 입력해야합니다.'
+//     })
 
 export default TextareaTitle;
