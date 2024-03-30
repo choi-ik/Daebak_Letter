@@ -8,9 +8,9 @@ import { useAtomValue } from 'jotai';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
 import { channelNameAtom, tokenAtom } from '@/store/auth';
 import Button from '../Common/Button';
-import Textarea from '../Common/Textarea';
 import Footer from './Footer';
 import Header from './Header';
+import Letter from './Letter';
 import Warning from './Warning';
 import * as Style from './index.style';
 
@@ -20,11 +20,9 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-const LETTER_TITLE = 'letterTitle';
-const LETTER_CONTENT = 'letterContent';
 export interface useFormProps {
-  [LETTER_TITLE]: string;
-  [LETTER_CONTENT]: string;
+  letterTitle: string;
+  letterContent: string;
 }
 
 export interface channelInfo {
@@ -132,35 +130,10 @@ function Post() {
         ))}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
-        <Textarea
-          width={'100%'}
-          height={'20.3125rem'}>
-          <Textarea.TextareaTitle
-            value={
-              userName
-                ? userName === '익명'
-                  ? undefined
-                  : userName
-                : undefined
-            }
-            placeholder={
-              userName
-                ? userName === '익명'
-                  ? '작성자명을 입력해주세요(최대 15자)'
-                  : userName
-                : '작성자명을 입력해주세요(최대 15자)'
-            }
-            maxLength={15}
-            register={register}
-            formKey={LETTER_TITLE}
-          />
-          <Textarea.TextareaUnderLine />
-          <Textarea.TextareaContent
-            placeholder={'내용을 입력하세요'}
-            register={register}
-            formKey={LETTER_CONTENT}
-          />
-        </Textarea>
+        <Letter
+          register={register}
+          userName={userName}
+        />
         <Warning allowRangeData={allowRangeData} />
         <Style.Form onSubmit={handleSubmit(onPostSubmit)}>
           <Footer />
